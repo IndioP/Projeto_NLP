@@ -1,0 +1,37 @@
+version: "3.0"
+
+rules:
+
+- rule: Activate form findRestaurant
+  steps:
+  - intent: FindRestaurants
+  - action: findRestaurant_forms
+  - active_loop: findRestaurant_forms
+
+- rule: submit form findRestaurant
+  condition:
+  - active_loop: findRestaurant_forms
+  steps:
+  - action: findRestaurant_forms
+  - active_loop: null
+  - slot_was_set: 
+    - requested_slot: null 
+  - action: utter_slots_values
+  - action: action_suggest_restaurant_name
+  - action: utter_OFFER_RESERVE_INTENT
+
+- rule: Activate form reserveRestaurant
+  steps:
+  - intent: ReserveRestaurant
+  - action: reserveRestaurant_forms
+  - active_loop: reserveRestaurant_forms
+
+- rule: submit form reserveRestaurant
+  condition:
+  - active_loop: reserveRestaurant_forms
+  steps:
+  - action: reserveRestaurant_forms
+  - active_loop: null
+  - slot_was_set: 
+    - requested_slot: null 
+  - action: utter_NOTIFY_SUCCESS

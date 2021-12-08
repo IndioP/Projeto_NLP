@@ -1,0 +1,57 @@
+version: "3.0"
+
+stories:
+
+- story: startConversation
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+#TERIAMOS QUE LANÇAR A BRABISSIMA DO FORMS AQUI........
+#  - action: utter_REQUEST
+
+- story: after_the_form
+  steps:
+  - action: utter_OFFER_RESERVE_INTENT
+  - intent: AFFIRM_INTENT
+  - action: reserveRestaurant_forms
+  - active_loop: reserveRestaurant_forms
+  - intent: THANK_YOU
+  - action: utter_GOODBYE
+
+#- story: reserve_restaurant_2
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: ReserveRestaurant
+#  - action: utter_REQUEST
+#  - intent: INFORM
+#  - action: utter_REQ_MORE
+#  - intent: NEGATE
+#  - action: utter_NOTIFY_SUCCESS
+#  - intent: GOODBYE
+#  - action: utter_GOODBYE
+
+#- story: reserve_restaurant_3
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: ReserveRestaurant
+#  - action: utter_REQUEST
+#  - intent: INFORM
+#  - action: utter_REQ_MORE
+#  - intent: NEGATE
+#  - action: utter_NOTIFY_SUCCESS
+#  - intent: THANK_YOU
+#  - action: utter_THANK_YOU
+#  - intent: GOODBYE
+#  - action: utter_GOODBYE
+
+#- story: infomration_restaurant
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: FindRestaurants
+#  - action: utter_REQUEST
+#  - intent: GOODBYE
+#  - action: utter_GOODBYE
