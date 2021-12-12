@@ -7,17 +7,62 @@ stories:
   - intent: greet
   - action: utter_greet
 
+- story: endConversation
+  steps:
+  - intent: GOODBYE
+  - action: utter_GOODBYE
+
+- story: fullConversation0
+  steps:
+  - intent: FindRestaurants
+  - action: findRestaurant_forms
+  - active_loop: findRestaurant_forms
+  - action: utter_slots_values
+  - action: action_suggest_restaurant_name
+  - intent: AFFIRM
+  - action: utter_OFFER_RESERVE_INTENT
+  - intent: NEGATE
+  - action: utter_GOODBYE
+
+- story: fullConversation1
+  steps:
+  - intent: FindRestaurants
+  #- action: form{"name": "findRestaurant_forms"}
+  #- action: form{"name": null}
+  - action: findRestaurant_forms
+  - active_loop: findRestaurant_forms
+  - action: utter_slots_values
+  - action: action_suggest_restaurant_name
+  - intent: AFFIRM
+  - action: utter_OFFER_RESERVE_INTENT
+  - intent: AFFIRM
+  - action: reserveRestaurant_forms
+  - active_loop: reserveRestaurant_forms
+  - action: utter_NOTIFY_SUCCESS
+  - action: utter_GOODBYE
+
+- story: fullConversation2
+  steps:
+  - intent: ReserveRestaurant
+  - action: reserveRestaurant_forms
+  - active_loop: reserveRestaurant_forms
+  - action: action_suggest_restaurant_name
+  - intent: AFFIRM
+  - action: utter_NOTIFY_SUCCESS
+  - action: utter_GOODBYE
+
 #TERIAMOS QUE LANÇAR A BRABISSIMA DO FORMS AQUI........
 #  - action: utter_REQUEST
 
-- story: after_the_form
-  steps:
-  - action: utter_OFFER_RESERVE_INTENT
-  - intent: AFFIRM_INTENT
-  - action: reserveRestaurant_forms
-  - active_loop: reserveRestaurant_forms
-  - intent: THANK_YOU
-  - action: utter_GOODBYE
+#- story: after_the_form
+#  steps:
+#  - action: utter_OFFER_RESERVE_INTENT
+#  - intent: AFFIRM
+#  - action: reserveRestaurant_forms
+#  - active_loop: reserveRestaurant_forms
+#  - action: utter_NOTIFY_SUCCESS
+#  - intent: THANK_YOU
+#  - action: utter_GOODBYE
 
 #- story: reserve_restaurant_2
 #  steps:
